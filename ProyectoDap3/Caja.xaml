@@ -1,0 +1,52 @@
+﻿<Window x:Class="ProyectoDap3.Caja"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Caja" Height="500" Width="650" Loaded="Window_Loaded">
+    <Canvas Name="cnvPrp">
+        <TabControl Canvas.Left="12" Canvas.Top="12" Height="437" Name="tbCnt" Width="604">
+            <TabItem Selector.IsSelected="True">
+                <TabItem.Header><TextBlock FontWeight="Bold">Primer</TextBlock></TabItem.Header>
+                <Canvas>
+                    <Button Canvas.Left="56" Canvas.Top="31" Height="83" Name="button1" Width="235" BorderBrush="{x:Null}" Foreground="{x:Null}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/ProyectoDap3;component/Images/Sin%20título.png" />
+                        </Button.Background>
+                        
+                    </Button>
+                    
+                </Canvas>
+            </TabItem>
+            
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Segundo</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Tercero</TextBlock></TabItem.Header>
+                <Canvas />
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Cuarto</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Quinto</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Sexto</TextBlock></TabItem.Header>
+                <Canvas />
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Septimo</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+        </TabControl>
+    </Canvas>
+</Window>
