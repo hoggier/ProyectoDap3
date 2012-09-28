@@ -52,11 +52,11 @@
                             <StackPanel Height="204" Name="stackPanel2" Width="236">
                                 <Label Content="Formas de Pago" Style="{DynamicResource stitulo}" Name="label7" />
                                 <WrapPanel Height="161" Name="wrapPanel2" Width="236">
-                                    <Button Content="EFECTIVO" Name="btnEfectivo" Style="{DynamicResource realizarpagos}" />
-                                    <Button Content="DOLAR" Name="btnDolar" Style="{DynamicResource realizarpagos}" />
-                                    <Button Content="VISA" Name="btnVisa" Style="{DynamicResource realizarpagos}" />
-                                    <Button Content="MASTER" Name="btnMaster" Style="{DynamicResource realizarpagos}" />
-                                    <Button Content="PROMOCION" Name="btnPromo" Style="{DynamicResource realizarpagos}" />
+                                    <Button Content="EFECTIVO" Name="btnEfectivo" Style="{DynamicResource realizarpagos}" Click="btnEfectivo_Click" />
+                                    <Button Content="DOLAR" Name="btnDolar" Style="{DynamicResource realizarpagos}" Click="btnDolar_Click" />
+                                    <Button Content="VISA" Name="btnVisa" Style="{DynamicResource realizarpagos}" Click="btnVisa_Click" />
+                                    <Button Content="MASTER" Name="btnMaster" Style="{DynamicResource realizarpagos}" Click="btnMaster_Click" />
+                                    <Button Content="PROMOCION" Name="btnPromo" Style="{DynamicResource realizarpagos}" Click="btnPromo_Click" />
                                 </WrapPanel>
                             </StackPanel>
                         </WrapPanel>
@@ -73,46 +73,46 @@
                     <StackPanel Canvas.Left="56" Canvas.Top="60" Height="320" Name="stackPanel9" Width="232">
                         <WrapPanel Style="{DynamicResource wpnretiro}" Name="wrapPanel5" >
                             <Label Content="Bs 200.-"  Name="label13" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbbs200"  />
+                            <TextBox Height="23" Name="txbbs200" Text="0" />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel6" Style="{DynamicResource wpnretiro}">
                             <Label Content="Bs 100.-"  Name="label14" Style="{DynamicResource labelretiro}"  />
-                            <TextBox Height="23" Name="txbbs100" />
+                            <TextBox Height="23" Name="txbbs100" Text="0" />
                         </WrapPanel>
                         <WrapPanel Style="{DynamicResource wpnretiro}" Name="wrapPanel7">
                             <Label Content="Bs 50.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbbs50" />
+                            <TextBox Height="23" Name="txbbs50" Text="0" />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel8" Style="{DynamicResource wpnretiro}">
                             <Label Content="$us 100.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbsdolar100"  />
+                            <TextBox Height="23" Name="txbdolar100" Text="0"  />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel9" Style="{DynamicResource wpnretiro}">
                             <Label Content="$us 50.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbdolar50" />
+                            <TextBox Height="23" Name="txbdolar50" Text="0" />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel10" Style="{DynamicResource wpnretiro}">
                             <Label Content="$us 20.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbdolar20" />
+                            <TextBox Height="23" Name="txbdolar20" Text="0" />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel11" Style="{DynamicResource wpnretiro}">
                             <Label Content="$us 10.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbdolar10" />
+                            <TextBox Height="23" Name="txbdolar10" Text="0" />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel12" Style="{DynamicResource wpnretiro}">
                             <Label Content="$us 5.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbdolar5" />
+                            <TextBox Height="23" Name="txbdolar5" Text="0" />
                         </WrapPanel>
                         <WrapPanel  Name="wrapPanel13" Style="{DynamicResource wpnretiro}">
                             <Label Content="$us 1.-" Style="{DynamicResource labelretiro}" />
-                            <TextBox Height="23" Name="txbdolar1" />
+                            <TextBox Height="23" Name="txbdolar1" Text="0" />
                         </WrapPanel>
                         <StackPanel Height="32" Name="stackPanel10" Width="230">
-                            <Button Content="Retirar" Height="28" Name="btnRetirar" Width="115" Style="{DynamicResource BotonCristalizado}" />
+                            <Button Content="Retirar" Height="28" Name="btnRetirar" Width="115" Style="{DynamicResource BotonCristalizado}" Click="btnRetirar_Click" />
                         </StackPanel>
                     </StackPanel>
                     <StackPanel Canvas.Left="346" Canvas.Top="91" Height="32" Name="stackPanel11" Width="230">
-                        <Button Content="Retirar Dotacion" Height="30" Name="btnRetirarDotacion" Width="154" Style="{DynamicResource BotonCristalizado}" />
+                        <Button Content="Retirar Dotacion" Height="30" Name="btnRetirarDotacion" Width="154" Style="{DynamicResource BotonCristalizado}" Click="btnRetirarDotacion_Click" />
                     </StackPanel>
                     <StackPanel Canvas.Left="346" Canvas.Top="160" Height="220" Name="detalles" Width="230" Visibility="Hidden">
                         <WrapPanel Height="35" Width="230">
@@ -143,23 +143,9 @@
                 <TabItem.Header><TextBlock  FontWeight="Bold">Cerrar Turno</TextBlock></TabItem.Header>
                 <Canvas>
                     <Label Canvas.Left="184" Canvas.Top="98" Content="Cerrar Turno" Name="label5" Style="{DynamicResource titulo}" />
-                    <Button Canvas.Left="184" Canvas.Top="145" Content="Cerrar" FontWeight="Bold" Height="37" Name="btnCerrarCaja" Style="{DynamicResource BotonCristalizado}" Width="146" />
+                    <Button Canvas.Left="184" Canvas.Top="145" Content="Cerrar" FontWeight="Bold" Height="37" Name="btnCerrarCaja" Style="{DynamicResource BotonCristalizado}" Width="146" Click="btnCerrarCaja_Click" />
                 </Canvas>
-            </TabItem>
-            <TabItem IsEnabled="False">
-                <TabItem.Header><TextBlock  FontWeight="Bold">Quinto</TextBlock></TabItem.Header>
-                <Canvas></Canvas>
-            </TabItem>
-
-            <TabItem IsEnabled="False">
-                <TabItem.Header><TextBlock  FontWeight="Bold">Sexto</TextBlock></TabItem.Header>
-                <Canvas />
-            </TabItem>
-
-            <TabItem IsEnabled="False">
-                <TabItem.Header><TextBlock  FontWeight="Bold">Septimo</TextBlock></TabItem.Header>
-                <Canvas></Canvas>
-            </TabItem>
+            </TabItem>            
         </TabControl>
     </Canvas>
 </Window>

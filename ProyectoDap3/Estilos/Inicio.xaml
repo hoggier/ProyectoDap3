@@ -111,10 +111,59 @@
     </LinearGradientBrush>
     
     <!-- tamaño de los botones en Realizar pagos-->
-    <Style TargetType="{x:Type Button}" x:Key="realizarpagos" BasedOn="BotonCristalizado">
+    <Style TargetType="{x:Type Button}" x:Key="realizarpagos">
         <Setter Property="Margin" Value="9" />
         <Setter Property="Height" Value="35" />        
         <Setter Property="Width" Value="100" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border CornerRadius="10" Name="OuterBorder"
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}" CornerRadius="10" Name="BackBorder">
+                                <Border.OpacityMask>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="#aFFF" Offset="0"/>
+                                        <GradientStop Color="#2FFF" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.OpacityMask>
+                            </Border>
+                            <Border Margin="4,1" CornerRadius="5,5,0,0" Height="5"
+                        VerticalAlignment="Top">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="#dfff" Offset="0"/>
+                                        <GradientStop Color="Transparent" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="OuterBorder" Property="Background" 
+                        Value="#9FFF"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="OuterBorder" Property="Background" 
+                        Value="#4000"/>
+                            <Setter TargetName="BackBorder" Property="OpacityMask">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0,1">
+                                        <GradientStop Color="#dFFF" Offset="0"/>
+                                        <GradientStop Color="#6FFF" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <!-- Estilo para el boton Cristalizado-->
