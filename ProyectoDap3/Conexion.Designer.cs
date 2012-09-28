@@ -18,14 +18,14 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Metadatos de relaciones en EDM
 
-[assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Personas_Cargos", "Cargo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Cargo), "Persona", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Persona), true)]
-[assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Usuarios_Personas", "Persona", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Persona), "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Usuario), true)]
-[assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Caja_Usuarios", "Usuario", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Usuario), "Caja", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Caja), true)]
+[assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Caja_Usuarios", "Usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Usuario), "Caja", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Caja), true)]
 [assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Dotacion_Caja", "Caja", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Caja), "Dotacion", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Dotacion), true)]
 [assembly: EdmRelationshipAttribute("dbCajaModel", "FK_EgresoCaja_Caja", "Caja", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Caja), "EgresoCaja", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.EgresoCaja), true)]
 [assembly: EdmRelationshipAttribute("dbCajaModel", "FK_IngresoCaja_Caja", "Caja", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Caja), "IngresoCaja", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.IngresoCaja), true)]
+[assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Personas_Cargos", "Cargos", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Cargo), "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Persona), true)]
 [assembly: EdmRelationshipAttribute("dbCajaModel", "FK_IngresoCaja_CxC", "CxC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.CxC), "IngresoCaja", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.IngresoCaja), true)]
 [assembly: EdmRelationshipAttribute("dbCajaModel", "FK_DetallesEgreso_EgresoCaja", "EgresoCaja", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.EgresoCaja), "DetallesEgreso", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.DetallesEgreso), true)]
+[assembly: EdmRelationshipAttribute("dbCajaModel", "FK_Usuarios_Personas", "Personas", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(ProyectoDap3.Persona), "Usuarios", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(ProyectoDap3.Usuario), true)]
 
 #endregion
 
@@ -80,54 +80,6 @@ namespace ProyectoDap3
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<Cargo> Cargos
-        {
-            get
-            {
-                if ((_Cargos == null))
-                {
-                    _Cargos = base.CreateObjectSet<Cargo>("Cargos");
-                }
-                return _Cargos;
-            }
-        }
-        private ObjectSet<Cargo> _Cargos;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<Persona> Personas
-        {
-            get
-            {
-                if ((_Personas == null))
-                {
-                    _Personas = base.CreateObjectSet<Persona>("Personas");
-                }
-                return _Personas;
-            }
-        }
-        private ObjectSet<Persona> _Personas;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        public ObjectSet<Usuario> Usuarios
-        {
-            get
-            {
-                if ((_Usuarios == null))
-                {
-                    _Usuarios = base.CreateObjectSet<Usuario>("Usuarios");
-                }
-                return _Usuarios;
-            }
-        }
-        private ObjectSet<Usuario> _Usuarios;
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
         public ObjectSet<Caja> Cajas
         {
             get
@@ -140,6 +92,22 @@ namespace ProyectoDap3
             }
         }
         private ObjectSet<Caja> _Cajas;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Cargo> Cargos
+        {
+            get
+            {
+                if ((_Cargos == null))
+                {
+                    _Cargos = base.CreateObjectSet<Cargo>("Cargos");
+                }
+                return _Cargos;
+            }
+        }
+        private ObjectSet<Cargo> _Cargos;
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -224,18 +192,18 @@ namespace ProyectoDap3
         /// <summary>
         /// No hay documentación de metadatos disponible.
         /// </summary>
-        public ObjectSet<sysdiagram> sysdiagrams
+        public ObjectSet<Persona> Personas
         {
             get
             {
-                if ((_sysdiagrams == null))
+                if ((_Personas == null))
                 {
-                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                    _Personas = base.CreateObjectSet<Persona>("Personas");
                 }
-                return _sysdiagrams;
+                return _Personas;
             }
         }
-        private ObjectSet<sysdiagram> _sysdiagrams;
+        private ObjectSet<Persona> _Personas;
     
         /// <summary>
         /// No hay documentación de metadatos disponible.
@@ -252,33 +220,25 @@ namespace ProyectoDap3
             }
         }
         private ObjectSet<TipoCambioDolar> _TipoCambioDolars;
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        public ObjectSet<Usuario> Usuarios
+        {
+            get
+            {
+                if ((_Usuarios == null))
+                {
+                    _Usuarios = base.CreateObjectSet<Usuario>("Usuarios");
+                }
+                return _Usuarios;
+            }
+        }
+        private ObjectSet<Usuario> _Usuarios;
 
         #endregion
         #region Métodos AddTo
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Cargos. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToCargos(Cargo cargo)
-        {
-            base.AddObject("Cargos", cargo);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Personas. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToPersonas(Persona persona)
-        {
-            base.AddObject("Personas", persona);
-        }
-    
-        /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet Usuarios. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
-        /// </summary>
-        public void AddToUsuarios(Usuario usuario)
-        {
-            base.AddObject("Usuarios", usuario);
-        }
     
         /// <summary>
         /// Método desusado para agregar un nuevo objeto al EntitySet Cajas. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
@@ -286,6 +246,14 @@ namespace ProyectoDap3
         public void AddToCajas(Caja caja)
         {
             base.AddObject("Cajas", caja);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Cargos. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToCargos(Cargo cargo)
+        {
+            base.AddObject("Cargos", cargo);
         }
     
         /// <summary>
@@ -329,11 +297,11 @@ namespace ProyectoDap3
         }
     
         /// <summary>
-        /// Método desusado para agregar un nuevo objeto al EntitySet sysdiagrams. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// Método desusado para agregar un nuevo objeto al EntitySet Personas. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
         /// </summary>
-        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        public void AddToPersonas(Persona persona)
         {
-            base.AddObject("sysdiagrams", sysdiagram);
+            base.AddObject("Personas", persona);
         }
     
         /// <summary>
@@ -342,6 +310,14 @@ namespace ProyectoDap3
         public void AddToTipoCambioDolars(TipoCambioDolar tipoCambioDolar)
         {
             base.AddObject("TipoCambioDolars", tipoCambioDolar);
+        }
+    
+        /// <summary>
+        /// Método desusado para agregar un nuevo objeto al EntitySet Usuarios. Considere la posibilidad de usar el método .Add de la propiedad ObjectSet&lt;T&gt; asociada.
+        /// </summary>
+        public void AddToUsuarios(Usuario usuario)
+        {
+            base.AddObject("Usuarios", usuario);
         }
 
         #endregion
@@ -491,16 +467,16 @@ namespace ProyectoDap3
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Caja_Usuarios", "Usuario")]
+        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Caja_Usuarios", "Usuarios")]
         public Usuario Usuario1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuario").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuarios").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuario").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuarios").Value = value;
             }
         }
         /// <summary>
@@ -512,13 +488,13 @@ namespace ProyectoDap3
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuarios");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuario", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Usuario>("dbCajaModel.FK_Caja_Usuarios", "Usuarios", value);
                 }
             }
         }
@@ -679,18 +655,18 @@ namespace ProyectoDap3
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Personas_Cargos", "Persona")]
+        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Personas_Cargos", "Personas")]
         public EntityCollection<Persona> Personas
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Persona>("dbCajaModel.FK_Personas_Cargos", "Persona");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Persona>("dbCajaModel.FK_Personas_Cargos", "Personas");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Persona>("dbCajaModel.FK_Personas_Cargos", "Persona", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Persona>("dbCajaModel.FK_Personas_Cargos", "Personas", value);
                 }
             }
         }
@@ -2141,16 +2117,16 @@ namespace ProyectoDap3
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Personas_Cargos", "Cargo")]
-        public Cargo Cargos
+        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Personas_Cargos", "Cargos")]
+        public Cargo Cargo1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargo").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargos").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargo").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargos").Value = value;
             }
         }
         /// <summary>
@@ -2158,17 +2134,17 @@ namespace ProyectoDap3
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Cargo> CargosReference
+        public EntityReference<Cargo> Cargo1Reference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargo");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargos");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargo", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Cargo>("dbCajaModel.FK_Personas_Cargos", "Cargos", value);
                 }
             }
         }
@@ -2179,178 +2155,23 @@ namespace ProyectoDap3
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Usuarios_Personas", "Usuario")]
+        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Usuarios_Personas", "Usuarios")]
         public EntityCollection<Usuario> Usuarios
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Usuario>("dbCajaModel.FK_Usuarios_Personas", "Usuario");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Usuario>("dbCajaModel.FK_Usuarios_Personas", "Usuarios");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("dbCajaModel.FK_Usuarios_Personas", "Usuario", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Usuario>("dbCajaModel.FK_Usuarios_Personas", "Usuarios", value);
                 }
             }
         }
 
         #endregion
-    }
-    
-    /// <summary>
-    /// No hay documentación de metadatos disponible.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="dbCajaModel", Name="sysdiagram")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class sysdiagram : EntityObject
-    {
-        #region Método de generador
-    
-        /// <summary>
-        /// Crear un nuevo objeto sysdiagram.
-        /// </summary>
-        /// <param name="name">Valor inicial de la propiedad name.</param>
-        /// <param name="principal_id">Valor inicial de la propiedad principal_id.</param>
-        /// <param name="diagram_id">Valor inicial de la propiedad diagram_id.</param>
-        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
-        {
-            sysdiagram sysdiagram = new sysdiagram();
-            sysdiagram.name = name;
-            sysdiagram.principal_id = principal_id;
-            sysdiagram.diagram_id = diagram_id;
-            return sysdiagram;
-        }
-
-        #endregion
-        #region Propiedades primitivas
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                OnnameChanging(value);
-                ReportPropertyChanging("name");
-                _name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("name");
-                OnnameChanged();
-            }
-        }
-        private global::System.String _name;
-        partial void OnnameChanging(global::System.String value);
-        partial void OnnameChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 principal_id
-        {
-            get
-            {
-                return _principal_id;
-            }
-            set
-            {
-                Onprincipal_idChanging(value);
-                ReportPropertyChanging("principal_id");
-                _principal_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("principal_id");
-                Onprincipal_idChanged();
-            }
-        }
-        private global::System.Int32 _principal_id;
-        partial void Onprincipal_idChanging(global::System.Int32 value);
-        partial void Onprincipal_idChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 diagram_id
-        {
-            get
-            {
-                return _diagram_id;
-            }
-            set
-            {
-                if (_diagram_id != value)
-                {
-                    Ondiagram_idChanging(value);
-                    ReportPropertyChanging("diagram_id");
-                    _diagram_id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("diagram_id");
-                    Ondiagram_idChanged();
-                }
-            }
-        }
-        private global::System.Int32 _diagram_id;
-        partial void Ondiagram_idChanging(global::System.Int32 value);
-        partial void Ondiagram_idChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> version
-        {
-            get
-            {
-                return _version;
-            }
-            set
-            {
-                OnversionChanging(value);
-                ReportPropertyChanging("version");
-                _version = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("version");
-                OnversionChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _version;
-        partial void OnversionChanging(Nullable<global::System.Int32> value);
-        partial void OnversionChanged();
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] definition
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_definition);
-            }
-            set
-            {
-                OndefinitionChanging(value);
-                ReportPropertyChanging("definition");
-                _definition = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("definition");
-                OndefinitionChanged();
-            }
-        }
-        private global::System.Byte[] _definition;
-        partial void OndefinitionChanging(global::System.Byte[] value);
-        partial void OndefinitionChanged();
-
-        #endregion
-    
     }
     
     /// <summary>
@@ -2599,44 +2420,6 @@ namespace ProyectoDap3
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Usuarios_Personas", "Persona")]
-        public Persona Personas
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Persona").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Persona").Value = value;
-            }
-        }
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Persona> PersonasReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Persona");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Persona", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No hay documentación de metadatos disponible.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Caja_Usuarios", "Caja")]
         public EntityCollection<Caja> Cajas
         {
@@ -2649,6 +2432,44 @@ namespace ProyectoDap3
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Caja>("dbCajaModel.FK_Caja_Usuarios", "Caja", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("dbCajaModel", "FK_Usuarios_Personas", "Personas")]
+        public Persona Persona1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Personas").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Personas").Value = value;
+            }
+        }
+        /// <summary>
+        /// No hay documentación de metadatos disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Persona> Persona1Reference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Personas");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Persona>("dbCajaModel.FK_Usuarios_Personas", "Personas", value);
                 }
             }
         }

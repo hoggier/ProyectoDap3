@@ -17,11 +17,53 @@ namespace ProyectoDap3
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class JefeCaja : Window
     {
-        public MainWindow()
+        public JefeCaja()
         {
             InitializeComponent();
+        }
+
+        dbCajaEntities objContexto = new dbCajaEntities();
+        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var objCargos = from Cargo c in objContexto.Cargos
+                            select c;
+            foreach (Cargo x in objCargos)
+            {
+                cmbCargo.Items.Add(x.Cargo1);
+            }
+        }
+
+        private void btnNuevo_Click(object sender, RoutedEventArgs e)
+        {
+            Persona objPer = new Persona();            
+            objPer.nombre = txbNom.Text;
+            objPer.app = txbApp.Text;
+            objPer.apm = txbApm.Text;
+            if (cmbCargo.SelectedValue.ToString() == "Cajero")
+                objPer.cargo = 2;
+            else objPer.cargo = 1;            
+            objContexto.AddToPersonas(objPer);
+            int a = objContexto.SaveChanges();
+
+            var objP = from Persona p in objContexto.Personas                       
+                       select p;
+            int idper = 0;            
+            foreach(Persona x in objP)
+            {
+                idper = x.idPersona;
+            }
+            Usuario objUs = new Usuario();
+            objUs.persona = idper;
+            objUs.nombreusuario = txbUser.Text;
+            objUs.contrasena = txbPass.Password;
+            objContexto.AddToUsuarios(objUs);
+            int b = objContexto.SaveChanges();
+
+            MessageBox.Show("Usuario Creado Exitosamente");
+            
         }
     }
 }

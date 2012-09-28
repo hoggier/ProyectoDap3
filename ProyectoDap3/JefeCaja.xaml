@@ -1,8 +1,65 @@
-﻿<Window x:Class="ProyectoDap3.MainWindow"
+﻿<Window x:Class="ProyectoDap3.JefeCaja"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="Jefe de Caja" Height="500" Width="650" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary Source="Estilos/Inicio.xaml" />
+    </Window.Resources>
+    <Canvas Name="cnvPrp" Background="{DynamicResource ColorVentana}">
+        <TabControl Canvas.Left="12" Canvas.Top="12" Height="437" Name="tbCnt" Width="604" Background="{DynamicResource ColorVentana}">
+            <TabItem Selector.IsSelected="True">
+                <TabItem.Header>
+                    <TextBlock>Usuarios</TextBlock>
+                </TabItem.Header>
+                <Canvas>
+                    <StackPanel Canvas.Left="140" Canvas.Top="74" Height="152" Name="stackPanel1" Width="290">
+                        <WrapPanel  Name="wrapPanel1">
+                            <Label Content="Nombre:" Height="28" Name="label1" Width="95" />
+                            <TextBox Height="23" Name="txbNom"  />
+                        </WrapPanel>
+                        <WrapPanel Name="wrapPanel2" >
+                            <Label Content="A. Paterno:" Height="28" Name="label2" Width="95" />
+                            <TextBox Height="23" Name="txbApp"  />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel3" >
+                            <Label Content="A. Materno:" Height="28" Name="label3" Width="95" />
+                            <TextBox Height="23" Name="txbApm"  />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel4">
+                            <Label Content="Cargo:" Height="33" Name="label4" Width="95" />
+                            <ComboBox Height="23" Name="cmbCargo"  />
+                        </WrapPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.Left="140" Canvas.Top="252" Height="76" Name="stackPanel2" Width="290">
+                        <WrapPanel  Name="wrapPanel5">
+                            <Label Content="Usuario:" Name="label5" Width="95"/>
+                            <TextBox Height="23" Name="txbUser"  />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel6">
+                            <Label Content="Contraseña:" Width="95" Name="label6" />
+                            <PasswordBox Height="23" Name="txbPass"  />
+                        </WrapPanel>
+                    </StackPanel>
+                    <Label Canvas.Left="184" Canvas.Top="1" Content="Nuevo Usuario" Name="label7" Style="{DynamicResource titulo}" />
+                    <Label Canvas.Left="120" Canvas.Top="216" Content="Datos de sesion" Name="label8" Style="{DynamicResource stitulo}"/>
+                    <Label Canvas.Left="120" Canvas.Top="38" Content="Datos Personales"  Name="label9" Style="{DynamicResource stitulo}" />
+                    <Button Canvas.Left="290" Canvas.Top="334" Content="Nuevo Usuario" Height="33" Name="btnNuevo" Width="135" Style="{DynamicResource BotonCristalizado}" Click="btnNuevo_Click" />
+                </Canvas>
+            </TabItem>
+
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock>Segundo</TextBlock>
+                </TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header>
+                    <TextBlock>Tercero</TextBlock>
+                </TabItem.Header>
+                <Canvas />
+            </TabItem>                                    
+        </TabControl>
+    </Canvas>
 </Window>

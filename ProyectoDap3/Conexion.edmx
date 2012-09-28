@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbCajaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="dbCajaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="dbCajaModelStoreContainer">
           <EntitySet Name="Caja" EntityType="dbCajaModel.Store.Caja" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Cargos" EntityType="dbCajaModel.Store.Cargos" store:Type="Tables" Schema="dbo" />
@@ -14,7 +14,6 @@
           <EntitySet Name="EgresoCaja" EntityType="dbCajaModel.Store.EgresoCaja" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="IngresoCaja" EntityType="dbCajaModel.Store.IngresoCaja" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Personas" EntityType="dbCajaModel.Store.Personas" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="dbCajaModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TipoCambioDolar" EntityType="dbCajaModel.Store.TipoCambioDolar" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Usuarios" EntityType="dbCajaModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Caja_Usuarios" Association="dbCajaModel.Store.FK_Caja_Usuarios">
@@ -135,16 +134,6 @@
           <Property Name="apm" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="cargo" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TipoCambioDolar">
           <Key>
             <PropertyRef Name="idTipoCambio" />
@@ -258,32 +247,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbCajaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="dbCajaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Cargos" EntityType="dbCajaModel.Cargo" />
-          <EntitySet Name="Personas" EntityType="dbCajaModel.Persona" />
-          <EntitySet Name="Usuarios" EntityType="dbCajaModel.Usuario" />
-          <AssociationSet Name="FK_Personas_Cargos" Association="dbCajaModel.FK_Personas_Cargos">
-            <End Role="Cargo" EntitySet="Cargos" />
-            <End Role="Persona" EntitySet="Personas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_Personas" Association="dbCajaModel.FK_Usuarios_Personas">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="Usuario" EntitySet="Usuarios" />
-          </AssociationSet>
           <EntitySet Name="Cajas" EntityType="dbCajaModel.Caja" />
+          <EntitySet Name="Cargos" EntityType="dbCajaModel.Cargo" />
           <EntitySet Name="CxCs" EntityType="dbCajaModel.CxC" />
           <EntitySet Name="DetallesEgresoes" EntityType="dbCajaModel.DetallesEgreso" />
           <EntitySet Name="Dotacions" EntityType="dbCajaModel.Dotacion" />
           <EntitySet Name="EgresoCajas" EntityType="dbCajaModel.EgresoCaja" />
           <EntitySet Name="IngresoCajas" EntityType="dbCajaModel.IngresoCaja" />
-          <EntitySet Name="sysdiagrams" EntityType="dbCajaModel.sysdiagram" />
+          <EntitySet Name="Personas" EntityType="dbCajaModel.Persona" />
           <EntitySet Name="TipoCambioDolars" EntityType="dbCajaModel.TipoCambioDolar" />
+          <EntitySet Name="Usuarios" EntityType="dbCajaModel.Usuario" />
           <AssociationSet Name="FK_Caja_Usuarios" Association="dbCajaModel.FK_Caja_Usuarios">
-            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
             <End Role="Caja" EntitySet="Cajas" />
           </AssociationSet>
           <AssociationSet Name="FK_Dotacion_Caja" Association="dbCajaModel.FK_Dotacion_Caja">
@@ -298,6 +279,10 @@
             <End Role="Caja" EntitySet="Cajas" />
             <End Role="IngresoCaja" EntitySet="IngresoCajas" />
           </AssociationSet>
+          <AssociationSet Name="FK_Personas_Cargos" Association="dbCajaModel.FK_Personas_Cargos">
+            <End Role="Cargos" EntitySet="Cargos" />
+            <End Role="Personas" EntitySet="Personas" />
+          </AssociationSet>
           <AssociationSet Name="FK_IngresoCaja_CxC" Association="dbCajaModel.FK_IngresoCaja_CxC">
             <End Role="CxC" EntitySet="CxCs" />
             <End Role="IngresoCaja" EntitySet="IngresoCajas" />
@@ -306,14 +291,97 @@
             <End Role="EgresoCaja" EntitySet="EgresoCajas" />
             <End Role="DetallesEgreso" EntitySet="DetallesEgresoes" />
           </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Personas" Association="dbCajaModel.FK_Usuarios_Personas">
+            <End Role="Personas" EntitySet="Personas" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Caja">
+          <Key>
+            <PropertyRef Name="idCaja" />
+          </Key>
+          <Property Name="idCaja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="fechahoraapertura" Type="DateTime" Nullable="false" />
+          <Property Name="usuario" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario1" Relationship="dbCajaModel.FK_Caja_Usuarios" FromRole="Caja" ToRole="Usuarios" />
+          <NavigationProperty Name="Dotacions" Relationship="dbCajaModel.FK_Dotacion_Caja" FromRole="Caja" ToRole="Dotacion" />
+          <NavigationProperty Name="EgresoCajas" Relationship="dbCajaModel.FK_EgresoCaja_Caja" FromRole="Caja" ToRole="EgresoCaja" />
+          <NavigationProperty Name="IngresoCajas" Relationship="dbCajaModel.FK_IngresoCaja_Caja" FromRole="Caja" ToRole="IngresoCaja" />
+        </EntityType>
         <EntityType Name="Cargo">
           <Key>
             <PropertyRef Name="idCargo" />
           </Key>
           <Property Name="idCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Cargo1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Personas" Relationship="dbCajaModel.FK_Personas_Cargos" FromRole="Cargo" ToRole="Persona" />
+          <NavigationProperty Name="Personas" Relationship="dbCajaModel.FK_Personas_Cargos" FromRole="Cargos" ToRole="Personas" />
+        </EntityType>
+        <EntityType Name="CxC">
+          <Key>
+            <PropertyRef Name="idCxC" />
+          </Key>
+          <Property Name="idCxC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="fechahora" Type="DateTime" Nullable="false" />
+          <Property Name="montoPagar" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="IngresoCajas" Relationship="dbCajaModel.FK_IngresoCaja_CxC" FromRole="CxC" ToRole="IngresoCaja" />
+        </EntityType>
+        <EntityType Name="DetallesEgreso">
+          <Key>
+            <PropertyRef Name="idDetEgreso" />
+          </Key>
+          <Property Name="idDetEgreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEgreso" Type="Int32" Nullable="false" />
+          <Property Name="c200bs" Type="Int32" Nullable="false" />
+          <Property Name="c100bs" Type="Int32" Nullable="false" />
+          <Property Name="c50bs" Type="Int32" Nullable="false" />
+          <Property Name="c100dolares" Type="Int32" Nullable="false" />
+          <Property Name="c50dolares" Type="Int32" Nullable="false" />
+          <Property Name="c20dolares" Type="Int32" Nullable="false" />
+          <Property Name="c10dolares" Type="Int32" Nullable="false" />
+          <Property Name="c5dolares" Type="Int32" Nullable="false" />
+          <Property Name="c1dolares" Type="Int32" Nullable="false" />
+          <Property Name="TCambio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="EgresoCaja" Relationship="dbCajaModel.FK_DetallesEgreso_EgresoCaja" FromRole="DetallesEgreso" ToRole="EgresoCaja" />
+        </EntityType>
+        <EntityType Name="Dotacion">
+          <Key>
+            <PropertyRef Name="idDotacion" />
+          </Key>
+          <Property Name="idDotacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="caja" Type="Int32" Nullable="false" />
+          <Property Name="efectivo" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="recibido" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="entregado" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Caja1" Relationship="dbCajaModel.FK_Dotacion_Caja" FromRole="Dotacion" ToRole="Caja" />
+        </EntityType>
+        <EntityType Name="EgresoCaja">
+          <Key>
+            <PropertyRef Name="idEgreso" />
+          </Key>
+          <Property Name="idEgreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCaja" Type="Int32" Nullable="false" />
+          <Property Name="MontoEgreso" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Caja" Relationship="dbCajaModel.FK_EgresoCaja_Caja" FromRole="EgresoCaja" ToRole="Caja" />
+          <NavigationProperty Name="DetallesEgresoes" Relationship="dbCajaModel.FK_DetallesEgreso_EgresoCaja" FromRole="EgresoCaja" ToRole="DetallesEgreso" />
+        </EntityType>
+        <EntityType Name="IngresoCaja">
+          <Key>
+            <PropertyRef Name="idIngreso" />
+          </Key>
+          <Property Name="idIngreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCxC" Type="Int32" Nullable="false" />
+          <Property Name="idCaja" Type="Int32" Nullable="false" />
+          <Property Name="bs" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="dolares" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="bolivianosTCambio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="visa" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="master" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="promocion" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="TCambio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Caja" Relationship="dbCajaModel.FK_IngresoCaja_Caja" FromRole="IngresoCaja" ToRole="Caja" />
+          <NavigationProperty Name="CxC" Relationship="dbCajaModel.FK_IngresoCaja_CxC" FromRole="IngresoCaja" ToRole="CxC" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -324,8 +392,16 @@
           <Property Name="app" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="apm" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="cargo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cargos" Relationship="dbCajaModel.FK_Personas_Cargos" FromRole="Persona" ToRole="Cargo" />
-          <NavigationProperty Name="Usuarios" Relationship="dbCajaModel.FK_Usuarios_Personas" FromRole="Persona" ToRole="Usuario" />
+          <NavigationProperty Name="Cargo1" Relationship="dbCajaModel.FK_Personas_Cargos" FromRole="Personas" ToRole="Cargos" />
+          <NavigationProperty Name="Usuarios" Relationship="dbCajaModel.FK_Usuarios_Personas" FromRole="Personas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="TipoCambioDolar">
+          <Key>
+            <PropertyRef Name="idTipoCambio" />
+          </Key>
+          <Property Name="idTipoCambio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="montoBs" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="oficial" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -335,135 +411,14 @@
           <Property Name="nombreusuario" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="contrasena" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="persona" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Personas" Relationship="dbCajaModel.FK_Usuarios_Personas" FromRole="Usuario" ToRole="Persona" />
-          <NavigationProperty Name="Cajas" Relationship="dbCajaModel.FK_Caja_Usuarios" FromRole="Usuario" ToRole="Caja" />
-        </EntityType>
-        <Association Name="FK_Personas_Cargos">
-          <End Type="dbCajaModel.Cargo" Role="Cargo" Multiplicity="1" />
-          <End Type="dbCajaModel.Persona" Role="Persona" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cargo">
-              <PropertyRef Name="idCargo" />
-            </Principal>
-            <Dependent Role="Persona">
-              <PropertyRef Name="cargo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuarios_Personas">
-          <End Type="dbCajaModel.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="dbCajaModel.Usuario" Role="Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="idPersona" />
-            </Principal>
-            <Dependent Role="Usuario">
-              <PropertyRef Name="persona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Caja">
-          <Key>
-            <PropertyRef Name="idCaja" />
-          </Key>
-          <Property Type="Int32" Name="idCaja" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="estado" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="fechahoraapertura" Nullable="false" />
-          <Property Type="Int32" Name="usuario" Nullable="false" />
-          <NavigationProperty Name="Usuario1" Relationship="dbCajaModel.FK_Caja_Usuarios" FromRole="Caja" ToRole="Usuario" />
-          <NavigationProperty Name="Dotacions" Relationship="dbCajaModel.FK_Dotacion_Caja" FromRole="Caja" ToRole="Dotacion" />
-          <NavigationProperty Name="EgresoCajas" Relationship="dbCajaModel.FK_EgresoCaja_Caja" FromRole="Caja" ToRole="EgresoCaja" />
-          <NavigationProperty Name="IngresoCajas" Relationship="dbCajaModel.FK_IngresoCaja_Caja" FromRole="Caja" ToRole="IngresoCaja" />
-        </EntityType>
-        <EntityType Name="CxC">
-          <Key>
-            <PropertyRef Name="idCxC" />
-          </Key>
-          <Property Type="Int32" Name="idCxC" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="estado" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="fechahora" Nullable="false" />
-          <Property Type="Decimal" Name="montoPagar" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="IngresoCajas" Relationship="dbCajaModel.FK_IngresoCaja_CxC" FromRole="CxC" ToRole="IngresoCaja" />
-        </EntityType>
-        <EntityType Name="DetallesEgreso">
-          <Key>
-            <PropertyRef Name="idDetEgreso" />
-          </Key>
-          <Property Type="Int32" Name="idDetEgreso" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="IdEgreso" Nullable="false" />
-          <Property Type="Int32" Name="c200bs" Nullable="false" />
-          <Property Type="Int32" Name="c100bs" Nullable="false" />
-          <Property Type="Int32" Name="c50bs" Nullable="false" />
-          <Property Type="Int32" Name="c100dolares" Nullable="false" />
-          <Property Type="Int32" Name="c50dolares" Nullable="false" />
-          <Property Type="Int32" Name="c20dolares" Nullable="false" />
-          <Property Type="Int32" Name="c10dolares" Nullable="false" />
-          <Property Type="Int32" Name="c5dolares" Nullable="false" />
-          <Property Type="Int32" Name="c1dolares" Nullable="false" />
-          <Property Type="Decimal" Name="TCambio" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="EgresoCaja" Relationship="dbCajaModel.FK_DetallesEgreso_EgresoCaja" FromRole="DetallesEgreso" ToRole="EgresoCaja" />
-        </EntityType>
-        <EntityType Name="Dotacion">
-          <Key>
-            <PropertyRef Name="idDotacion" />
-          </Key>
-          <Property Type="Int32" Name="idDotacion" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="caja" Nullable="false" />
-          <Property Type="Decimal" Name="efectivo" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="recibido" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="entregado" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Caja1" Relationship="dbCajaModel.FK_Dotacion_Caja" FromRole="Dotacion" ToRole="Caja" />
-        </EntityType>
-        <EntityType Name="EgresoCaja">
-          <Key>
-            <PropertyRef Name="idEgreso" />
-          </Key>
-          <Property Type="Int32" Name="idEgreso" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idCaja" Nullable="false" />
-          <Property Type="Decimal" Name="MontoEgreso" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Caja" Relationship="dbCajaModel.FK_EgresoCaja_Caja" FromRole="EgresoCaja" ToRole="Caja" />
-          <NavigationProperty Name="DetallesEgresoes" Relationship="dbCajaModel.FK_DetallesEgreso_EgresoCaja" FromRole="EgresoCaja" ToRole="DetallesEgreso" />
-        </EntityType>
-        <EntityType Name="IngresoCaja">
-          <Key>
-            <PropertyRef Name="idIngreso" />
-          </Key>
-          <Property Type="Int32" Name="idIngreso" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="idCxC" Nullable="false" />
-          <Property Type="Int32" Name="idCaja" Nullable="false" />
-          <Property Type="Decimal" Name="bs" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="dolares" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="bolivianosTCambio" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="visa" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="master" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="promocion" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="Decimal" Name="TCambio" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Caja" Relationship="dbCajaModel.FK_IngresoCaja_Caja" FromRole="IngresoCaja" ToRole="Caja" />
-          <NavigationProperty Name="CxC" Relationship="dbCajaModel.FK_IngresoCaja_CxC" FromRole="IngresoCaja" ToRole="CxC" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="principal_id" Nullable="false" />
-          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="version" />
-          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="TipoCambioDolar">
-          <Key>
-            <PropertyRef Name="idTipoCambio" />
-          </Key>
-          <Property Type="Int32" Name="idTipoCambio" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Decimal" Name="montoBs" Nullable="false" Precision="18" Scale="2" />
-          <Property Type="String" Name="oficial" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cajas" Relationship="dbCajaModel.FK_Caja_Usuarios" FromRole="Usuarios" ToRole="Caja" />
+          <NavigationProperty Name="Persona1" Relationship="dbCajaModel.FK_Usuarios_Personas" FromRole="Usuarios" ToRole="Personas" />
         </EntityType>
         <Association Name="FK_Caja_Usuarios">
-          <End Type="dbCajaModel.Usuario" Role="Usuario" Multiplicity="1" />
-          <End Type="dbCajaModel.Caja" Role="Caja" Multiplicity="*" />
+          <End Role="Usuarios" Type="dbCajaModel.Usuario" Multiplicity="1" />
+          <End Role="Caja" Type="dbCajaModel.Caja" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Usuario">
+            <Principal Role="Usuarios">
               <PropertyRef Name="idUsuario" />
             </Principal>
             <Dependent Role="Caja">
@@ -472,8 +427,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Dotacion_Caja">
-          <End Type="dbCajaModel.Caja" Role="Caja" Multiplicity="1" />
-          <End Type="dbCajaModel.Dotacion" Role="Dotacion" Multiplicity="*" />
+          <End Role="Caja" Type="dbCajaModel.Caja" Multiplicity="1" />
+          <End Role="Dotacion" Type="dbCajaModel.Dotacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Caja">
               <PropertyRef Name="idCaja" />
@@ -484,8 +439,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EgresoCaja_Caja">
-          <End Type="dbCajaModel.Caja" Role="Caja" Multiplicity="1" />
-          <End Type="dbCajaModel.EgresoCaja" Role="EgresoCaja" Multiplicity="*" />
+          <End Role="Caja" Type="dbCajaModel.Caja" Multiplicity="1" />
+          <End Role="EgresoCaja" Type="dbCajaModel.EgresoCaja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Caja">
               <PropertyRef Name="idCaja" />
@@ -496,8 +451,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_IngresoCaja_Caja">
-          <End Type="dbCajaModel.Caja" Role="Caja" Multiplicity="1" />
-          <End Type="dbCajaModel.IngresoCaja" Role="IngresoCaja" Multiplicity="*" />
+          <End Role="Caja" Type="dbCajaModel.Caja" Multiplicity="1" />
+          <End Role="IngresoCaja" Type="dbCajaModel.IngresoCaja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Caja">
               <PropertyRef Name="idCaja" />
@@ -507,9 +462,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Personas_Cargos">
+          <End Role="Cargos" Type="dbCajaModel.Cargo" Multiplicity="1" />
+          <End Role="Personas" Type="dbCajaModel.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargos">
+              <PropertyRef Name="idCargo" />
+            </Principal>
+            <Dependent Role="Personas">
+              <PropertyRef Name="cargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_IngresoCaja_CxC">
-          <End Type="dbCajaModel.CxC" Role="CxC" Multiplicity="1" />
-          <End Type="dbCajaModel.IngresoCaja" Role="IngresoCaja" Multiplicity="*" />
+          <End Role="CxC" Type="dbCajaModel.CxC" Multiplicity="1" />
+          <End Role="IngresoCaja" Type="dbCajaModel.IngresoCaja" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CxC">
               <PropertyRef Name="idCxC" />
@@ -520,8 +487,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DetallesEgreso_EgresoCaja">
-          <End Type="dbCajaModel.EgresoCaja" Role="EgresoCaja" Multiplicity="1" />
-          <End Type="dbCajaModel.DetallesEgreso" Role="DetallesEgreso" Multiplicity="*" />
+          <End Role="EgresoCaja" Type="dbCajaModel.EgresoCaja" Multiplicity="1" />
+          <End Role="DetallesEgreso" Type="dbCajaModel.DetallesEgreso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EgresoCaja">
               <PropertyRef Name="idEgreso" />
@@ -531,15 +498,77 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Usuarios_Personas">
+          <End Role="Personas" Type="dbCajaModel.Persona" Multiplicity="1" />
+          <End Role="Usuarios" Type="dbCajaModel.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personas">
+              <PropertyRef Name="idPersona" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="persona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="dbCajaModelStoreContainer" CdmEntityContainer="dbCajaEntities">
+          <EntitySetMapping Name="Cajas"><EntityTypeMapping TypeName="dbCajaModel.Caja"><MappingFragment StoreEntitySet="Caja">
+            <ScalarProperty Name="idCaja" ColumnName="idCaja" />
+            <ScalarProperty Name="estado" ColumnName="estado" />
+            <ScalarProperty Name="fechahoraapertura" ColumnName="fechahoraapertura" />
+            <ScalarProperty Name="usuario" ColumnName="usuario" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Cargos"><EntityTypeMapping TypeName="dbCajaModel.Cargo"><MappingFragment StoreEntitySet="Cargos">
             <ScalarProperty Name="idCargo" ColumnName="idCargo" />
             <ScalarProperty Name="Cargo1" ColumnName="Cargo" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CxCs"><EntityTypeMapping TypeName="dbCajaModel.CxC"><MappingFragment StoreEntitySet="CxC">
+            <ScalarProperty Name="idCxC" ColumnName="idCxC" />
+            <ScalarProperty Name="estado" ColumnName="estado" />
+            <ScalarProperty Name="fechahora" ColumnName="fechahora" />
+            <ScalarProperty Name="montoPagar" ColumnName="montoPagar" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="DetallesEgresoes"><EntityTypeMapping TypeName="dbCajaModel.DetallesEgreso"><MappingFragment StoreEntitySet="DetallesEgreso">
+            <ScalarProperty Name="idDetEgreso" ColumnName="idDetEgreso" />
+            <ScalarProperty Name="IdEgreso" ColumnName="IdEgreso" />
+            <ScalarProperty Name="c200bs" ColumnName="c200bs" />
+            <ScalarProperty Name="c100bs" ColumnName="c100bs" />
+            <ScalarProperty Name="c50bs" ColumnName="c50bs" />
+            <ScalarProperty Name="c100dolares" ColumnName="c100dolares" />
+            <ScalarProperty Name="c50dolares" ColumnName="c50dolares" />
+            <ScalarProperty Name="c20dolares" ColumnName="c20dolares" />
+            <ScalarProperty Name="c10dolares" ColumnName="c10dolares" />
+            <ScalarProperty Name="c5dolares" ColumnName="c5dolares" />
+            <ScalarProperty Name="c1dolares" ColumnName="c1dolares" />
+            <ScalarProperty Name="TCambio" ColumnName="TCambio" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Dotacions"><EntityTypeMapping TypeName="dbCajaModel.Dotacion"><MappingFragment StoreEntitySet="Dotacion">
+            <ScalarProperty Name="idDotacion" ColumnName="idDotacion" />
+            <ScalarProperty Name="caja" ColumnName="caja" />
+            <ScalarProperty Name="efectivo" ColumnName="efectivo" />
+            <ScalarProperty Name="recibido" ColumnName="recibido" />
+            <ScalarProperty Name="entregado" ColumnName="entregado" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="EgresoCajas"><EntityTypeMapping TypeName="dbCajaModel.EgresoCaja"><MappingFragment StoreEntitySet="EgresoCaja">
+            <ScalarProperty Name="idEgreso" ColumnName="idEgreso" />
+            <ScalarProperty Name="idCaja" ColumnName="idCaja" />
+            <ScalarProperty Name="MontoEgreso" ColumnName="MontoEgreso" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="IngresoCajas"><EntityTypeMapping TypeName="dbCajaModel.IngresoCaja"><MappingFragment StoreEntitySet="IngresoCaja">
+            <ScalarProperty Name="idIngreso" ColumnName="idIngreso" />
+            <ScalarProperty Name="idCxC" ColumnName="idCxC" />
+            <ScalarProperty Name="idCaja" ColumnName="idCaja" />
+            <ScalarProperty Name="bs" ColumnName="bs" />
+            <ScalarProperty Name="dolares" ColumnName="dolares" />
+            <ScalarProperty Name="bolivianosTCambio" ColumnName="bolivianosTCambio" />
+            <ScalarProperty Name="visa" ColumnName="visa" />
+            <ScalarProperty Name="master" ColumnName="master" />
+            <ScalarProperty Name="promocion" ColumnName="promocion" />
+            <ScalarProperty Name="TCambio" ColumnName="TCambio" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Personas"><EntityTypeMapping TypeName="dbCajaModel.Persona"><MappingFragment StoreEntitySet="Personas">
             <ScalarProperty Name="idPersona" ColumnName="idPersona" />
@@ -548,106 +577,17 @@
             <ScalarProperty Name="apm" ColumnName="apm" />
             <ScalarProperty Name="cargo" ColumnName="cargo" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TipoCambioDolars"><EntityTypeMapping TypeName="dbCajaModel.TipoCambioDolar"><MappingFragment StoreEntitySet="TipoCambioDolar">
+            <ScalarProperty Name="idTipoCambio" ColumnName="idTipoCambio" />
+            <ScalarProperty Name="montoBs" ColumnName="montoBs" />
+            <ScalarProperty Name="oficial" ColumnName="oficial" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Usuarios"><EntityTypeMapping TypeName="dbCajaModel.Usuario"><MappingFragment StoreEntitySet="Usuarios">
             <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
             <ScalarProperty Name="nombreusuario" ColumnName="nombreusuario" />
             <ScalarProperty Name="contrasena" ColumnName="contrasena" />
             <ScalarProperty Name="persona" ColumnName="persona" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Cajas">
-            <EntityTypeMapping TypeName="dbCajaModel.Caja">
-              <MappingFragment StoreEntitySet="Caja">
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="fechahoraapertura" ColumnName="fechahoraapertura" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="idCaja" ColumnName="idCaja" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CxCs">
-            <EntityTypeMapping TypeName="dbCajaModel.CxC">
-              <MappingFragment StoreEntitySet="CxC">
-                <ScalarProperty Name="montoPagar" ColumnName="montoPagar" />
-                <ScalarProperty Name="fechahora" ColumnName="fechahora" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="idCxC" ColumnName="idCxC" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DetallesEgresoes">
-            <EntityTypeMapping TypeName="dbCajaModel.DetallesEgreso">
-              <MappingFragment StoreEntitySet="DetallesEgreso">
-                <ScalarProperty Name="TCambio" ColumnName="TCambio" />
-                <ScalarProperty Name="c1dolares" ColumnName="c1dolares" />
-                <ScalarProperty Name="c5dolares" ColumnName="c5dolares" />
-                <ScalarProperty Name="c10dolares" ColumnName="c10dolares" />
-                <ScalarProperty Name="c20dolares" ColumnName="c20dolares" />
-                <ScalarProperty Name="c50dolares" ColumnName="c50dolares" />
-                <ScalarProperty Name="c100dolares" ColumnName="c100dolares" />
-                <ScalarProperty Name="c50bs" ColumnName="c50bs" />
-                <ScalarProperty Name="c100bs" ColumnName="c100bs" />
-                <ScalarProperty Name="c200bs" ColumnName="c200bs" />
-                <ScalarProperty Name="IdEgreso" ColumnName="IdEgreso" />
-                <ScalarProperty Name="idDetEgreso" ColumnName="idDetEgreso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Dotacions">
-            <EntityTypeMapping TypeName="dbCajaModel.Dotacion">
-              <MappingFragment StoreEntitySet="Dotacion">
-                <ScalarProperty Name="entregado" ColumnName="entregado" />
-                <ScalarProperty Name="recibido" ColumnName="recibido" />
-                <ScalarProperty Name="efectivo" ColumnName="efectivo" />
-                <ScalarProperty Name="caja" ColumnName="caja" />
-                <ScalarProperty Name="idDotacion" ColumnName="idDotacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EgresoCajas">
-            <EntityTypeMapping TypeName="dbCajaModel.EgresoCaja">
-              <MappingFragment StoreEntitySet="EgresoCaja">
-                <ScalarProperty Name="MontoEgreso" ColumnName="MontoEgreso" />
-                <ScalarProperty Name="idCaja" ColumnName="idCaja" />
-                <ScalarProperty Name="idEgreso" ColumnName="idEgreso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="IngresoCajas">
-            <EntityTypeMapping TypeName="dbCajaModel.IngresoCaja">
-              <MappingFragment StoreEntitySet="IngresoCaja">
-                <ScalarProperty Name="TCambio" ColumnName="TCambio" />
-                <ScalarProperty Name="promocion" ColumnName="promocion" />
-                <ScalarProperty Name="master" ColumnName="master" />
-                <ScalarProperty Name="visa" ColumnName="visa" />
-                <ScalarProperty Name="bolivianosTCambio" ColumnName="bolivianosTCambio" />
-                <ScalarProperty Name="dolares" ColumnName="dolares" />
-                <ScalarProperty Name="bs" ColumnName="bs" />
-                <ScalarProperty Name="idCaja" ColumnName="idCaja" />
-                <ScalarProperty Name="idCxC" ColumnName="idCxC" />
-                <ScalarProperty Name="idIngreso" ColumnName="idIngreso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="dbCajaModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TipoCambioDolars">
-            <EntityTypeMapping TypeName="dbCajaModel.TipoCambioDolar">
-              <MappingFragment StoreEntitySet="TipoCambioDolar">
-                <ScalarProperty Name="oficial" ColumnName="oficial" />
-                <ScalarProperty Name="montoBs" ColumnName="montoBs" />
-                <ScalarProperty Name="idTipoCambio" ColumnName="idTipoCambio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -662,58 +602,56 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Conexion">
-        <EntityTypeShape EntityType="dbCajaModel.Cargo" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCajaModel.Persona" Width="1.5" PointX="2.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCajaModel.Usuario" Width="1.5" PointX="0.75" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
-        <AssociationConnector Association="dbCajaModel.FK_Personas_Cargos" >
-          <ConnectorPoint PointX="2.25" PointY="1.5478417968750002" />
-          <ConnectorPoint PointX="2.75" PointY="1.5478417968750002" />
+        <EntityTypeShape EntityType="dbCajaModel.Caja" Width="1.5" PointX="7.5" PointY="5.5" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.Cargo" Width="1.5" PointX="0.75" PointY="6" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.CxC" Width="1.5" PointX="10.5" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.DetallesEgreso" Width="1.5" PointX="12" PointY="6.5" Height="3.5186979166666665" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.Dotacion" Width="1.5" PointX="9.75" PointY="3.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.EgresoCaja" Width="1.5" PointX="9.75" PointY="7.25" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.IngresoCaja" Width="1.5" PointX="12.75" PointY="2.125" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.Persona" Width="1.5" PointX="3" PointY="5.5" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.TipoCambioDolar" Width="1.5" PointX="0.75" PointY="0.875" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCajaModel.Usuario" Width="1.5" PointX="5.25" PointY="5.625" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="dbCajaModel.FK_Caja_Usuarios" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="6.7112939453125" />
+          <ConnectorPoint PointX="7.5" PointY="6.7112939453125" />
         </AssociationConnector>
-        <AssociationConnector Association="dbCajaModel.FK_Usuarios_Personas" >
-          <ConnectorPoint PointX="2.7499999999999996" PointY="3.1148893229166661" />
-          <ConnectorPoint PointX="2.25" PointY="3.75" />
+        <AssociationConnector Association="dbCajaModel.FK_Dotacion_Caja" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.25" PointY="5.5" />
+          <ConnectorPoint PointX="8.25" PointY="4.4999994999999995" />
+          <ConnectorPoint PointX="9.75" PointY="4.4999994999999995" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="dbCajaModel.Caja" Width="1.5" PointX="3.375" PointY="6.5" Height="2.5571907552083344" />
-        <EntityTypeShape EntityType="dbCajaModel.CxC" Width="1.5" PointX="6.375" PointY="1.875" Height="1.9802864583333335" />
-        <EntityTypeShape EntityType="dbCajaModel.DetallesEgreso" Width="1.5" PointX="7.875" PointY="7.5" Height="3.5186979166666674" />
-        <EntityTypeShape EntityType="dbCajaModel.Dotacion" Width="1.5" PointX="5.625" PointY="4.625" Height="2.1725878906249996" />
-        <EntityTypeShape EntityType="dbCajaModel.EgresoCaja" Width="1.5" PointX="5.625" PointY="8.25" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="dbCajaModel.IngresoCaja" Width="1.5" PointX="8.625" PointY="3.125" Height="3.3263964843749996" />
-        <EntityTypeShape EntityType="dbCajaModel.sysdiagram" Width="1.5" PointX="10.75" PointY="0.75" Height="1.9802864583333317" />
-        <EntityTypeShape EntityType="dbCajaModel.TipoCambioDolar" Width="1.5" PointX="0.75" PointY="10.75" Height="1.5956835937500031" />
-        <AssociationConnector Association="dbCajaModel.FK_Caja_Usuarios" >
-          <ConnectorPoint PointX="2.25" PointY="4.8675464453125" />
-          <ConnectorPoint PointX="4.125" PointY="4.8675464453125" />
-          <ConnectorPoint PointX="4.125" PointY="6.5" />
+        <AssociationConnector Association="dbCajaModel.FK_EgresoCaja_Caja" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="7.6535953776041667" />
+          <ConnectorPoint PointX="9.75" PointY="7.6535953776041667" />
         </AssociationConnector>
-        <AssociationConnector Association="dbCajaModel.FK_Dotacion_Caja" >
-          <ConnectorPoint PointX="4.5312525" PointY="6.5" />
-          <ConnectorPoint PointX="4.5312525" PointY="5.6525207226562486" />
-          <ConnectorPoint PointX="5.625" PointY="5.6525207226562486" />
+        <AssociationConnector Association="dbCajaModel.FK_IngresoCaja_Caja" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="6.0862939453125" />
+          <ConnectorPoint PointX="13.90625" PointY="6.0862939453125" />
+          <ConnectorPoint PointX="13.90625" PointY="5.451396484375" />
         </AssociationConnector>
-        <AssociationConnector Association="dbCajaModel.FK_EgresoCaja_Caja" >
-          <ConnectorPoint PointX="4.875" PointY="8.6535953776041676" />
-          <ConnectorPoint PointX="5.625" PointY="8.6535953776041676" />
+        <AssociationConnector Association="dbCajaModel.FK_Personas_Cargos" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.797841796875" />
+          <ConnectorPoint PointX="3" PointY="6.797841796875" />
         </AssociationConnector>
-        <AssociationConnector Association="dbCajaModel.FK_IngresoCaja_Caja" >
-          <ConnectorPoint PointX="4.875" PointY="7.1487939453125" />
-          <ConnectorPoint PointX="9.78125" PointY="7.1487939453125" />
-          <ConnectorPoint PointX="9.78125" PointY="6.451396484375" />
+        <AssociationConnector Association="dbCajaModel.FK_IngresoCaja_CxC" ManuallyRouted="false">
+          <ConnectorPoint PointX="12" PointY="2.4276432291666667" />
+          <ConnectorPoint PointX="12.75" PointY="2.4276432291666667" />
         </AssociationConnector>
-        <AssociationConnector Association="dbCajaModel.FK_IngresoCaja_CxC" >
-          <ConnectorPoint PointX="7.875" PointY="3.4901432291666667" />
-          <ConnectorPoint PointX="8.625" PointY="3.4901432291666667" />
+        <AssociationConnector Association="dbCajaModel.FK_DetallesEgreso_EgresoCaja" ManuallyRouted="false">
+          <ConnectorPoint PointX="11.25" PointY="8.2401432291666659" />
+          <ConnectorPoint PointX="12" PointY="8.2401432291666659" />
         </AssociationConnector>
-        <AssociationConnector Association="dbCajaModel.FK_DetallesEgreso_EgresoCaja" >
-          <ConnectorPoint PointX="7.125" PointY="9.2401432291666659" />
-          <ConnectorPoint PointX="7.875" PointY="9.2401432291666659" />
+        <AssociationConnector Association="dbCajaModel.FK_Usuarios_Personas" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.7112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="6.7112939453125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -1,13 +1,55 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- Estilo que se aplicara a todas las etiquetas-->
     <Style TargetType="{x:Type Label}">
         <Setter Property="FontFamily" Value="Candara"/>
         <Setter Property="FontSize" Value="17"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
         <Setter Property="Margin" Value="20,5"/>
-    </Style>        
+    </Style>
 
+    <!-- Estilos para el control Contenedor-->
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="3" />
+    </Style>
+
+    <!-- Etiqueta de los encabezados-->
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontWeight" Value="Bold" />
+        <!--<Setter Property="Background" Value="Yellow" />        -->
+    </Style>
+
+    <!-- TextBox en JefeCaja-->
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="Yellow" />
+        <Setter Property="Width" Value="150" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="2" />
+    </Style>
+    
+    <Style TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="Yellow" />
+        <Setter Property="Width" Value="150" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="2" />
+    </Style>
+
+    <!-- ComboBox en JefeCaja-->
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="Yellow" />
+        <Setter Property="Width" Value="150" />
+    </Style>
+
+    <!-- WPN cajero y jefe de caja-->
+    <Style TargetType="{x:Type WrapPanel}">
+        <Setter Property="Height" Value="38" />
+        <Setter Property="Width" Value="290" />
+    </Style>
+
+    <!-- Etiqueta de tamaño grande para titulo-->
     <Style x:Key="titulo" TargetType="{x:Type Label}">
         <Setter Property="FontFamily" Value="Candara"/>
         <Setter Property="Height" Value="40"/> 
@@ -19,6 +61,7 @@
         <Setter Property="Margin" Value="20,5"/>
     </Style>
 
+    <!-- Etiqueta de tamaño grande para Subtitulo-->
     <Style x:Key="stitulo" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="Yellow" />
         <Setter Property="FontWeight" Value="ExtraBlack" />
@@ -30,6 +73,7 @@
         <Setter Property="Margin" Value="20,5"/>
     </Style>
 
+    <!-- Degradado que se usa en los Canvas como background-->
     <LinearGradientBrush x:Key="ColorVentana" StartPoint="0,0" EndPoint="1,1">
         <LinearGradientBrush.GradientStops>
             <GradientStop Color="Red" Offset="0.0" />

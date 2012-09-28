@@ -1,0 +1,47 @@
+﻿<Window x:Class="ProyectoDap3.Cajero"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Caja" Height="500" Width="650" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary Source="Estilos/Inicio.xaml" />
+    </Window.Resources>
+    <Canvas Name="cnvPrp" Background="{DynamicResource ColorVentana}">
+        <TabControl Canvas.Left="12" Canvas.Top="12" Height="437" Name="tbCnt" Width="604" Background="{DynamicResource ColorVentana}">
+            <TabItem Selector.IsSelected="True">
+                <TabItem.Header><TextBlock FontWeight="Bold">Primer</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+            
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Segundo</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Tercero</TextBlock></TabItem.Header>
+                <Canvas />
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Cuarto</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Quinto</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Sexto</TextBlock></TabItem.Header>
+                <Canvas />
+            </TabItem>
+
+            <TabItem >
+                <TabItem.Header><TextBlock  FontWeight="Bold">Septimo</TextBlock></TabItem.Header>
+                <Canvas></Canvas>
+            </TabItem>
+        </TabControl>
+    </Canvas>
+</Window>
