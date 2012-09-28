@@ -7,38 +7,47 @@
     </Window.Resources>
     <Canvas Name="cnvPrp" Background="{DynamicResource ColorVentana}">
         <TabControl Canvas.Left="12" Canvas.Top="12" Height="437" Name="tbCnt" Width="604" Background="{DynamicResource ColorVentana}">
-            <TabItem Selector.IsSelected="True">
-                <TabItem.Header><TextBlock FontWeight="Bold">Primer</TextBlock></TabItem.Header>
-                <Canvas></Canvas>
+            <TabItem Selector.IsSelected="True" Name="selHabilitarTurno">
+                <TabItem.Header><TextBlock FontWeight="Bold">Habilitar Turno</TextBlock></TabItem.Header>
+                <Canvas>
+                    <WrapPanel Canvas.Left="6" Canvas.Top="69" Height="44" Name="wrapPanel1" Width="578">
+                        <Label Content="Cajero(a):" Height="32" Name="label1" Foreground="Black" />
+                        <Label Content="" Height="32" Name="lblCajero" />                        
+                    </WrapPanel>
+                    <Label Content="Sistema para control de cobros" Name="label2" Style="{DynamicResource titulo}" Width="356" Canvas.Left="98" Canvas.Top="1" />
+                    <StackPanel Canvas.Left="154" Canvas.Top="174" Height="130" Name="stackPanel1" Width="297" Background="Red" Margin="0">
+                        <Label Content="Debe habilitar la caja para" Name="label3" Style="{DynamicResource stitulo}" />
+                        <Label Content="poder ralizar cobros" Name="label4" Style="{DynamicResource stitulo}" />
+                        <Button  FontWeight="Bold" Content="Habilitar Caja" Height="29" Name="btnCaja" Width="115" Style="{DynamicResource BotonCristalizado}" Click="btnCaja_Click" />
+                    </StackPanel>
+                </Canvas>
             </TabItem>
             
-            <TabItem >
-                <TabItem.Header><TextBlock  FontWeight="Bold">Segundo</TextBlock></TabItem.Header>
+            <TabItem IsEnabled="False" Name="selCobros">
+                <TabItem.Header><TextBlock  FontWeight="Bold">Realizar Cobros</TextBlock></TabItem.Header>
                 <Canvas></Canvas>
             </TabItem>
 
-            <TabItem >
-                <TabItem.Header><TextBlock  FontWeight="Bold">Tercero</TextBlock></TabItem.Header>
+            <TabItem IsEnabled="False" Name="selEgresos">
+                <TabItem.Header><TextBlock  FontWeight="Bold">Egresos</TextBlock></TabItem.Header>
                 <Canvas />
             </TabItem>
 
-            <TabItem >
-                <TabItem.Header><TextBlock  FontWeight="Bold">Cuarto</TextBlock></TabItem.Header>
+            <TabItem IsEnabled="False" Name="selCerrar">
+                <TabItem.Header><TextBlock  FontWeight="Bold">Cerrar Turno</TextBlock></TabItem.Header>
                 <Canvas></Canvas>
             </TabItem>
-
-
-            <TabItem >
+            <TabItem IsEnabled="False">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Quinto</TextBlock></TabItem.Header>
                 <Canvas></Canvas>
             </TabItem>
 
-            <TabItem >
+            <TabItem IsEnabled="False">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Sexto</TextBlock></TabItem.Header>
                 <Canvas />
             </TabItem>
 
-            <TabItem >
+            <TabItem IsEnabled="False">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Septimo</TextBlock></TabItem.Header>
                 <Canvas></Canvas>
             </TabItem>

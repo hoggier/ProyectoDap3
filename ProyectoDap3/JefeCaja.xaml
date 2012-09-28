@@ -49,9 +49,26 @@
 
             <TabItem>
                 <TabItem.Header>
-                    <TextBlock>Segundo</TextBlock>
+                    <TextBlock>Dolares</TextBlock>
                 </TabItem.Header>
-                <Canvas></Canvas>
+                <Canvas>
+                    <Label Canvas.Left="126" Canvas.Top="10" Content="Ingresar nuevo T. Cambio" Name="label10" Style="{DynamicResource titulo}" />
+                    <StackPanel Canvas.Left="142" Canvas.Top="156" Height="76" Name="stackPanel3" Width="290">
+                        <WrapPanel  Name="wrapPanel7">
+                            <Label Content="T.Cambio:" Height="28" Name="label" Width="95" />
+                            <TextBox Height="23" Name="txbTC"  />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel8">
+                            <Label />
+                            <Label />
+                            <Label />
+                            <Button FontWeight="Bold" Content="Guardar T.Cambio" Height="32" Name="btnTC" Width="135" Style="{DynamicResource BotonCristalizado}" Click="btnTC_Click" />
+                        </WrapPanel>
+                    </StackPanel>
+                    <Label Canvas.Left="142" Canvas.Top="112" Content="Actualizar T.Cambio" Style="{DynamicResource stitulo}" Name="label11" />
+                    <Label Canvas.Left="146" Canvas.Top="47" Content="T.Cambio Actual" Style="{DynamicResource stitulo}" Name="label12" />
+                    <Label Canvas.Left="166" Canvas.Top="78" Content="Label" Height="28" Name="lblTCActual" />
+                </Canvas>
             </TabItem>
 
             <TabItem >

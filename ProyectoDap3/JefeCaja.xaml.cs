@@ -28,6 +28,7 @@ namespace ProyectoDap3
         
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            lblTCActual.Content = Clases.CTipoCambio.tcambio.ToString();
             var objCargos = from Cargo c in objContexto.Cargos
                             select c;
             foreach (Cargo x in objCargos)
@@ -64,6 +65,35 @@ namespace ProyectoDap3
 
             MessageBox.Show("Usuario Creado Exitosamente");
             
+        }
+
+        private void btnTC_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                TipoCambioDolar objTC = new TipoCambioDolar();
+                var objTTC = from TipoCambioDolar c in objContexto.TipoCambioDolars
+                             where c.oficial == "s"
+                             select c;
+                foreach (TipoCambioDolar x in objTTC)
+                {
+                    x.oficial = "N";
+                }
+                int a = objContexto.SaveChanges();
+
+
+                objTC.montoBs = decimal.Parse(txbTC.Text);
+                Clases.CTipoCambio.tcambio = decimal.Parse(txbTC.Text);
+                lblTCActual.Content = Clases.CTipoCambio.tcambio.ToString();
+                objTC.oficial = "S";
+                objContexto.AddToTipoCambioDolars(objTC);
+                objContexto.SaveChanges();
+                MessageBox.Show("Nuevo tipo de cambio almacenado");
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show(a.Message);
+            }
         }
     }
 }

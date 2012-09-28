@@ -89,6 +89,8 @@
     <Compile Include="Cajero.xaml.cs">
       <DependentUpon>Cajero.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Clases\CCajero.cs" />
+    <Compile Include="Clases\CTipoCambio.cs" />
     <Compile Include="Conexion.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

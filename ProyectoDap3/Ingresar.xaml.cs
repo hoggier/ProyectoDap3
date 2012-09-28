@@ -42,11 +42,20 @@ namespace ProyectoDap3
             }
             var objPersona = from Persona p in objContexto.Personas
                              where p.idPersona == persona
-                             select p;
+                             select p;            
             int cargo = 0;
             foreach (Persona x in objPersona)
             {
                 cargo = x.cargo;
+                Clases.CCajero.cajero = x.nombre + " " + x.app + " " + x.apm;
+                Clases.CCajero.personaid = x.idPersona;
+            }
+            var objTCambio = from TipoCambioDolar tc in objContexto.TipoCambioDolars
+                             where tc.oficial == "S"
+                             select tc;
+            foreach (TipoCambioDolar x in objTCambio)
+            {
+                Clases.CTipoCambio.tcambio = x.montoBs;        
             }
 
             if (cargo == 1)

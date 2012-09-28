@@ -1232,7 +1232,7 @@ namespace ProyectoDap3
         /// <param name="efectivo">Valor inicial de la propiedad efectivo.</param>
         /// <param name="recibido">Valor inicial de la propiedad recibido.</param>
         /// <param name="entregado">Valor inicial de la propiedad entregado.</param>
-        public static Dotacion CreateDotacion(global::System.Int32 idDotacion, global::System.Int32 caja, global::System.Decimal efectivo, global::System.Decimal recibido, global::System.Decimal entregado)
+        public static Dotacion CreateDotacion(global::System.Int32 idDotacion, global::System.Int32 caja, global::System.Decimal efectivo, global::System.String recibido, global::System.String entregado)
         {
             Dotacion dotacion = new Dotacion();
             dotacion.idDotacion = idDotacion;
@@ -1326,7 +1326,7 @@ namespace ProyectoDap3
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal recibido
+        public global::System.String recibido
         {
             get
             {
@@ -1336,13 +1336,13 @@ namespace ProyectoDap3
             {
                 OnrecibidoChanging(value);
                 ReportPropertyChanging("recibido");
-                _recibido = StructuralObject.SetValidValue(value);
+                _recibido = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("recibido");
                 OnrecibidoChanged();
             }
         }
-        private global::System.Decimal _recibido;
-        partial void OnrecibidoChanging(global::System.Decimal value);
+        private global::System.String _recibido;
+        partial void OnrecibidoChanging(global::System.String value);
         partial void OnrecibidoChanged();
     
         /// <summary>
@@ -1350,7 +1350,7 @@ namespace ProyectoDap3
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Decimal entregado
+        public global::System.String entregado
         {
             get
             {
@@ -1360,13 +1360,13 @@ namespace ProyectoDap3
             {
                 OnentregadoChanging(value);
                 ReportPropertyChanging("entregado");
-                _entregado = StructuralObject.SetValidValue(value);
+                _entregado = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("entregado");
                 OnentregadoChanged();
             }
         }
-        private global::System.Decimal _entregado;
-        partial void OnentregadoChanging(global::System.Decimal value);
+        private global::System.String _entregado;
+        partial void OnentregadoChanging(global::System.String value);
         partial void OnentregadoChanged();
 
         #endregion
