@@ -14,28 +14,137 @@
                         <Label Content="Cajero(a):" Height="32" Name="label1" Foreground="Black" />
                         <Label Content="" Height="32" Name="lblCajero" />                        
                     </WrapPanel>
-                    <Label Content="Sistema para control de cobros" Name="label2" Style="{DynamicResource titulo}" Width="356" Canvas.Left="98" Canvas.Top="1" />
                     <StackPanel Canvas.Left="154" Canvas.Top="174" Height="130" Name="stackPanel1" Width="297" Background="Red" Margin="0">
                         <Label Content="Debe habilitar la caja para" Name="label3" Style="{DynamicResource stitulo}" />
                         <Label Content="poder ralizar cobros" Name="label4" Style="{DynamicResource stitulo}" />
                         <Button  FontWeight="Bold" Content="Habilitar Caja" Height="29" Name="btnCaja" Width="115" Style="{DynamicResource BotonCristalizado}" Click="btnCaja_Click" />
+                    </StackPanel>
+                    <StackPanel Canvas.Left="1" Canvas.Top="6"  Name="stackPanel5" Style="{DynamicResource tituloVentana}">
+                        <Label Content="Sistema para control de cobros" Name="label2" Style="{DynamicResource titulo}" Width="346" />
                     </StackPanel>
                 </Canvas>
             </TabItem>
             
             <TabItem IsEnabled="False" Name="selCobros">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Realizar Cobros</TextBlock></TabItem.Header>
-                <Canvas></Canvas>
+                <Canvas>
+                    <StackPanel Canvas.Left="2" Canvas.Top="10" Name="stackPanel4" Style="{DynamicResource tituloVentana}" >
+                        <Label Content="Realizar Cobros"  Style="{DynamicResource titulo}" Name="label6" Width="181" />
+                    </StackPanel>
+                    <StackPanel Canvas.Left="2" Canvas.Top="62" Height="315" Name="stackPanel8" Width="588">
+                        <WrapPanel Height="315" Name="dockPanel1" Width="516">
+                            <StackPanel Height="204" Name="stackPanel3" Width="280">
+                                <Label Content="Monto Cuenta" Name="label9" Style="{DynamicResource stitulo}" />
+                                <StackPanel Height="35" Name="wrapPanel3" Width="280">
+                                    <TextBox Height="23" Name="txbMontoCuenta" />
+                                </StackPanel>
+                                <Label Content="Monto Ingreso" Style="{DynamicResource stitulo}" Name="label10" />
+                                <StackPanel Height="35" Name="stackPanel7" Width="280">
+                                    <TextBox Height="23" Name="txbMontoIngreso" />
+                                </StackPanel>
+                                <WrapPanel Height="48" Name="wrapPanel4" Width="280">
+                                    <Label Content="Saldo:" Style="{DynamicResource stitulo}" Name="label11" Margin="0" />
+                                    <Label Content="" Height="37" Name="lblSaldo" Width="50" Margin="0" />
+                                    <Label Content="Cambio:" Style="{DynamicResource stitulo}" Name="label12" Margin="0" />
+                                    <Label Content="" Height="37" Name="lblCambio" Margin="0" Width="50" />
+                                </WrapPanel>
+                            </StackPanel>
+                            <StackPanel Height="204" Name="stackPanel2" Width="236">
+                                <Label Content="Formas de Pago" Style="{DynamicResource stitulo}" Name="label7" />
+                                <WrapPanel Height="161" Name="wrapPanel2" Width="236">
+                                    <Button Content="EFECTIVO" Name="btnEfectivo" Style="{DynamicResource realizarpagos}" />
+                                    <Button Content="DOLAR" Name="btnDolar" Style="{DynamicResource realizarpagos}" />
+                                    <Button Content="VISA" Name="btnVisa" Style="{DynamicResource realizarpagos}" />
+                                    <Button Content="MASTER" Name="btnMaster" Style="{DynamicResource realizarpagos}" />
+                                    <Button Content="PROMOCION" Name="btnPromo" Style="{DynamicResource realizarpagos}" />
+                                </WrapPanel>
+                            </StackPanel>
+                        </WrapPanel>
+                    </StackPanel>
+                </Canvas>
             </TabItem>
 
             <TabItem IsEnabled="False" Name="selEgresos">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Egresos</TextBlock></TabItem.Header>
-                <Canvas />
+                <Canvas>
+                    <StackPanel Canvas.Left="0" Canvas.Top="6"  Name="stackPanel6" Style="{DynamicResource tituloVentana}">
+                        <Label Content="Realizar Egresos" Style="{DynamicResource titulo}" Name="label8" Width="185" Visibility="Hidden" />
+                    </StackPanel>
+                    <StackPanel Canvas.Left="56" Canvas.Top="60" Height="320" Name="stackPanel9" Width="232">
+                        <WrapPanel Style="{DynamicResource wpnretiro}" Name="wrapPanel5" >
+                            <Label Content="Bs 200.-"  Name="label13" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbbs200"  />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel6" Style="{DynamicResource wpnretiro}">
+                            <Label Content="Bs 100.-"  Name="label14" Style="{DynamicResource labelretiro}"  />
+                            <TextBox Height="23" Name="txbbs100" />
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource wpnretiro}" Name="wrapPanel7">
+                            <Label Content="Bs 50.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbbs50" />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel8" Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us 100.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbsdolar100"  />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel9" Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us 50.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbdolar50" />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel10" Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us 20.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbdolar20" />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel11" Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us 10.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbdolar10" />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel12" Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us 5.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbdolar5" />
+                        </WrapPanel>
+                        <WrapPanel  Name="wrapPanel13" Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us 1.-" Style="{DynamicResource labelretiro}" />
+                            <TextBox Height="23" Name="txbdolar1" />
+                        </WrapPanel>
+                        <StackPanel Height="32" Name="stackPanel10" Width="230">
+                            <Button Content="Retirar" Height="28" Name="btnRetirar" Width="115" Style="{DynamicResource BotonCristalizado}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Canvas.Left="346" Canvas.Top="91" Height="32" Name="stackPanel11" Width="230">
+                        <Button Content="Retirar Dotacion" Height="30" Name="btnRetirarDotacion" Width="154" Style="{DynamicResource BotonCristalizado}" />
+                    </StackPanel>
+                    <StackPanel Canvas.Left="346" Canvas.Top="160" Height="220" Name="detalles" Width="230" Visibility="Hidden">
+                        <WrapPanel Height="35" Width="230">
+                            <Label Content="Detalle del Retiro"  Name="lblRetiro" Style="{DynamicResource stitulo}" Margin="0" />
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource wpnretiro}">
+                            <Label Content="Retiro Bs.-" Height="28" Name="lblRetiroBs" Style="{DynamicResource detalleretiro}" />
+                            <Label Content="" Height="28" Name="lblRetiroBss"  Margin="0"/>
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource wpnretiro}">
+                            <Label Content="Retiro $us.-" Height="28" Name="lblRetirodolares" Style="{DynamicResource detalleretiro}" />
+                            <Label Content="" Height="28" Name="lblRetirodolaress" Margin="0" />
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource wpnretiro}">
+                            <Label Content="$us T/C.-" Height="28" Name="lblSusenBs" Style="{DynamicResource detalleretiro}"/>
+                            <Label Content="" Height="28" Name="lblSusenBss" Margin="0" />
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource wpnretiro}">
+                            <Label Content="Total Retiro Bs.-" Height="28" Name="lblTotalRetiro" Style="{DynamicResource detalleretiro}"  />
+                            <Label Content="" Height="28" Name="lblTotalRetiros" Margin="0" />
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource wpnretiro}" />
+                    </StackPanel>
+                </Canvas>
             </TabItem>
 
             <TabItem IsEnabled="False" Name="selCerrar">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Cerrar Turno</TextBlock></TabItem.Header>
-                <Canvas></Canvas>
+                <Canvas>
+                    <Label Canvas.Left="184" Canvas.Top="98" Content="Cerrar Turno" Name="label5" Style="{DynamicResource titulo}" />
+                    <Button Canvas.Left="184" Canvas.Top="145" Content="Cerrar" FontWeight="Bold" Height="37" Name="btnCerrarCaja" Style="{DynamicResource BotonCristalizado}" Width="146" />
+                </Canvas>
             </TabItem>
             <TabItem IsEnabled="False">
                 <TabItem.Header><TextBlock  FontWeight="Bold">Quinto</TextBlock></TabItem.Header>

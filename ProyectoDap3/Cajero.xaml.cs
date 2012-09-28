@@ -37,6 +37,18 @@ namespace ProyectoDap3
             realizarDotacion();
         }
 
+        private void CerrarCaja()
+        {
+            var objCaja = from Caja c in objContexto.Cajas
+                          where c.idCaja == Clases.CCajero.cajaid
+                          select c;
+            foreach (Caja x in objCaja)
+            {
+                x.estado = "Cerrada";
+            }                        
+            objContexto.SaveChanges();            
+        }
+
         private void realizarDotacion()
         {
             var objCaja = from Caja c in objContexto.Cajas
@@ -89,7 +101,23 @@ namespace ProyectoDap3
             {
                 MessageBox.Show(a.Message);
             }
+        }
 
+        private void btnCerrarCaja_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                selHabilitarTurno.IsEnabled = true;
+                selHabilitarTurno.IsSelected = true;
+                selCerrar.IsEnabled = false;
+                selEgresos.IsEnabled = false;
+                selCobros.IsEnabled = false;
+                CerrarCaja();
+            }
+            catch (Exception a)
+            {
+                MessageBox.Show(a.Message);
+            }            
         }
     }
 }
